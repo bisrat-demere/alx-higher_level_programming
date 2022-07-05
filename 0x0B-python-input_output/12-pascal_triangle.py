@@ -1,26 +1,24 @@
 #!/usr/bin/python3
 """
-Print python triangle
+    12-pascal_triangle: pascal_triangle()
 """
 
 
 def pascal_triangle(n):
+    """
+        returns a lis of lists of integers
+        Args:
+            n (int): number of lists and digits
+        Returns: list of lists
+    """
+    t_row = [1]
+    temp_l = [0]
+    pTri = []
 
-    """
-    return pascal_triangle
-    Args:
-        n(int): number of row
-    Returns:
-        list: pascal_triangle
-    """
     if n <= 0:
-        return []
-    if n == 1:
-        return [[1]]
-    res = [[]]
-    res[0].append(1)
-    prev_row = pascal_triangle(n - 1)[-1]
-    for i in range(len(prev_row) - 1):
-        res[0].append(prev_row[i] + prev_row[i + 1])
-    res[0].append(1)
-    return pascal_triangle(n - 1) + res
+        return pTri
+
+    for i in range(n):
+        pTri.append(t_row)
+        t_row = [l+r for l, r in zip(t_row + temp_l, temp_l + t_row)]
+    return pTri
